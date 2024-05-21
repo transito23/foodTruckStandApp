@@ -9,3 +9,5 @@ My app aims to solve this problem by providing a comprehensive directory of loca
 
 Additionally, food truck owners can easily add their trucks to the app, allowing them to reach more customers and grow their businesses. 
 This platform will not only help people find delicious new food options but also support local food truck owners by giving them greater visibility in the community.
+
+![Poster](FoodAppTruck.png)
