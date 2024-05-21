@@ -37,6 +37,18 @@ dependencies:
   cupertino_icons: ^1.0.2
   cloud_firestore: ^4.14.0
   firebase_auth: ^4.16.0
+  google_sign_in: ^6.1.6
+  firebase_core: ^2.24.2
+  firebase_storage: ^11.6.0
+  geolocator: ^11.0.0
+  image_picker: ^1.0.7
+  uuid: ^4.2.2
+  sign_in_button: ^3.2.0
+  cached_network_image: ^3.3.1
+  photo_view: ^0.15.0
+  intl: ^0.19.0
+  url_launcher: ^6.2.4
+  google_maps_flutter: ^2.5.3
 
 dev_dependencies:
   flutter_test:
