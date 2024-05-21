@@ -83,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _myController = TextEditingController();
     _futurePosition = _determinePosition();
@@ -180,9 +179,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("Add a Photo"),
+        title: const Text('Add a Photo'),
+        backgroundColor: Colors.deepOrangeAccent,
+        elevation: 0, // removes the shadow under the app bar
       ),
       body: Center(
           // Center is a layout widget. It takes a single child and positions it
@@ -195,40 +194,50 @@ class _MyHomePageState extends State<MyHomePage> {
             TextFormField(
               controller: _myController,
               validator: _textValidator,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
                 labelText: 'Enter name of Food Stand/Truck',
+                labelStyle: const TextStyle(
+                  color: Colors.black,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  // Define the border when the field is focused
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(color: Colors.orange, width: 2.0),
+                ),
+                prefixIcon: const Icon(
+                  Icons.fastfood,
+                  color: Colors.orangeAccent,
+                ), // Add an icon for visual appeal
+                fillColor: Colors.grey[200], // Light grey fill
+                filled: true,
               ),
             ),
             ElevatedButton(
-                onPressed: buttonWorks ? _submit : null,
-                child: const Text("Submit")),
+              onPressed: buttonWorks ? _submit : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepOrangeAccent, // Bright orange color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                ),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 30.0, vertical: 15.0),
+              ),
+              child: const Text("Submit"),
+            ),
             Text(displayString),
             SizedBox(
               height: 300,
               width: 300,
               child: imageFile != null
                   ? Image.file(imageFile!)
-                  : Placeholder(
-                      fallbackHeight: 100,
-                      fallbackWidth: 100,
-                      child: Image.network(
-                        'https://img.lovepik.com/free-png/20210918/lovepik-street-food-stalls-png-image_400270387_wh1200.png',
-                      )),
+                  : const Center(
+                      child: Text(
+                          'No image selected. Tap below to add a photo.',
+                          textAlign: TextAlign.center)),
             ),
-            StreamBuilder(
-                stream: positionStream,
-                builder:
-                    (BuildContext context, AsyncSnapshot<Position> snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(
-                        'Lat: ${snapshot.data!.latitude}, Long: ${snapshot.data!.longitude}, Accuracy: ${snapshot.data!.accuracy}');
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
-
-                  return const CircularProgressIndicator();
-                }),
           ],
         ),
       )),
@@ -236,7 +245,8 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _getPhoto,
         tooltip: 'Get Photo',
         child: const Icon(Icons.add_a_photo),
-        foregroundColor: Colors.amber,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.deepOrangeAccent,
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
